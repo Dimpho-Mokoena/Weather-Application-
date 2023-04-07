@@ -1,0 +1,16 @@
+ <script>
+
+        function changeCity () {
+            let city = prompt ("Which city do you live in?");
+            let temperature = prompt ("What is the temperature?");
+            if(temperature <0){
+                let heading = document.querySelector("h1");
+                heading.innerHTML= "🌧️ <br> Currently" + temperature + "°c in " + city;
+            } else{
+                let heading = document.querySelector("h1");
+                heading.innerHTML = "🌞 <br> Currently" + temperature + "°c in " + city;
+            }
+        }
+        let changeButton = document.querySelector("button");
+        changeButton.addEventListener("click", changeCity);
+       </script>
