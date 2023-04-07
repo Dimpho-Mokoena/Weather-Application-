@@ -1,0 +1,68 @@
+<style>
+    h1{
+    color: rgb(227, 139, 131);
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 34px;
+    line-height: 48px;
+    margin: 0 auto;
+}
+h2{
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 34px;
+    line-height: 48px;
+    margin: 0 auto;
+    font-weight: 400;
+}
+h3{
+    font-family: Arial, Helvetica, sans-serif; ;
+}
+
+li{
+    list-style: none;
+    text-align: center;
+    padding: 10px 0px;
+    border-radius: 10px;
+    transition: all 200ms ease-in-out;
+    max-width: 350px;
+    margin: 0 auto;
+
+}
+
+ul{
+    padding: 0;}
+
+    p {
+        font-size: 18px;
+        opacity: 0.7;
+        text-align: center;
+        font-family: monospace;
+
+}
+li:hover{
+background: rgb(218, 165, 218);
+
+}
+
+button{
+    padding: 16px 24px;
+    width: 100px;
+    display: block;
+    margin: 20px auto;
+    border-radius: 30px;
+    color: rgb(239, 223, 47);
+    box-shadow: 0px 5px 10px 0px;
+    transition: all 200ms ease-in-out;
+    background:white;
+    border: rgb(206, 137, 151);
+    font-size: 16px;
+    line-height: 22px;
+    text-decoration: none;
+    cursor: pointer;
+}
+button:hover{
+    background: whitesmoke;
+    color:crimson
+}
+</style>
