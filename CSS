@@ -1,51 +1,25 @@
 <style>
-    h1{
-    color: rgb(227, 139, 131);
-    text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 34px;
-    line-height: 48px;
-    margin: 0 auto;
-}
-h2{
-    text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 34px;
-    line-height: 48px;
-    margin: 0 auto;
-    font-weight: 400;
-}
-h3{
-    font-family: Arial, Helvetica, sans-serif; ;
-}
-
-li{
-    list-style: none;
-    text-align: center;
-    padding: 10px 0px;
-    border-radius: 10px;
-    transition: all 200ms ease-in-out;
-    max-width: 350px;
-    margin: 0 auto;
-
-}
-
-ul{
-    padding: 0;}
-
-    p {
-        font-size: 18px;
-        opacity: 0.7;
+        ul{
         text-align: center;
-        font-family: monospace;
+        list-style: none;
+        left: 50px;
+        position: relative;
+        right: 270px;
+     }
+     h1{
+        text-align:center;
+     }
+     p{text-align: center;}
 
-}
-li:hover{
-background: rgb(218, 165, 218);
-
+     body {
+  background-image: url(https://images.unsplash.com/photo-1564352969906-8b7f46ba4b8b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Z3JlZW58ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60);
+  background-size: cover;
 }
 
 button{
+    position:absolute;
+    top: 10px;
+    right:400px;
     padding: 16px 24px;
     width: 100px;
     display: block;
@@ -60,6 +34,60 @@ button{
     line-height: 22px;
     text-decoration: none;
     cursor: pointer;
+}
+
+.searchControl{
+    position: fixed;
+    top: 10px;
+    right:400px;
+    padding:5px;
+     border-radius: 8px;
+      background-color: rgba(243, 243, 232, 0.282);
+     border-color: rgb(218, 15, 164)
+}
+.head-rain{
+    position: absolute;
+    top: 30px;
+  left:600px;
+  
+}
+
+.monday{
+    position: relative;
+     left: 500px;
+     bottom: -10px;  
+  
+}
+.Tuesday{
+    position: relative;
+    top:-90px;
+    left:600px;
+}
+.wednesday{
+     position:relative;
+    top:-187px;
+    left:700px;
+}
+
+.thursdayy{
+     position:relative;
+    top:-287px;
+    left:800px;
+}
+
+.friday{
+     position:relative;
+    top:-387px;
+    left:900px;
+}
+.saturdayy{
+     position:relative;
+    top:-487px;
+    left:1000px;
+}
+.days{
+    position: relative;
+    left:-190px;
 }
 button:hover{
     background: whitesmoke;
