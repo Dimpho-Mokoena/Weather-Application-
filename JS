@@ -1,16 +1,34 @@
  <script>
 
-        function changeCity () {
-            let city = prompt ("Which city do you live in?");
-            let temperature = prompt ("What is the temperature?");
-            if(temperature <0){
-                let heading = document.querySelector("h1");
-                heading.innerHTML= "🌧️ <br> Currently" + temperature + "°c in " + city;
-            } else{
-                let heading = document.querySelector("h1");
-                heading.innerHTML = "🌞 <br> Currently" + temperature + "°c in " + city;
-            }
-        }
         let changeButton = document.querySelector("button");
         changeButton.addEventListener("click", changeCity);
+        
+            let apiKey = "866a208a73eeff02182218e9441647a1";
+    let city = "Cape Town";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric`;
+
+    function showTemperature(response) {
+        console.log(response.data);
+        let temperature = Math.round(response.data.main.temp);
+        let temperatureElement = document.querySelector("#temperature");
+        let description = document.querySelector("#temperature-description");
+        temperatureElement.innerHTML = `${temperature}°C`;
+        description.innerHTML = response.data.weather[0].description;
+    }
+    let h1 = document.querySelector("#city");
+    h1.innerHTML = city;
+
+    axios.get(`${apiUrl}&appid=${apiKey}`).then(showTemperature);
+
+    function showPosition(position) {
+        console.log("position");
+        let h1 = document.querySelector("h1");
+        h1.innerHTML = `Your latitude is ${position.coords.latitude} and your longitude is ${position.coords.longitude}`;
+    }
+    function getCurrentPosition() {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    }
+
+    let button = document.querySelector("button");
+    button.addEventListener("click", getCurrentPosition);
        </script>
