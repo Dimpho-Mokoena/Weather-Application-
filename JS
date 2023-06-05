@@ -1,12 +1,4 @@
  <script>
-
-        let changeButton = document.querySelector("button");
-        changeButton.addEventListener("click", changeCity);
-        
-            let apiKey = "866a208a73eeff02182218e9441647a1";
-    let city = "Cape Town";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric`;
-
     function showTemperature(response) {
         console.log(response.data);
         let temperature = Math.round(response.data.main.temp);
@@ -15,6 +7,11 @@
         temperatureElement.innerHTML = `${temperature}°C`;
         description.innerHTML = response.data.weather[0].description;
     }
+
+        let apiKey = "866a208a73eeff02182218e9441647a1";
+        let city = "Cape Town";
+        let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric`;
+
     let h1 = document.querySelector("#city");
     h1.innerHTML = city;
 
