@@ -8,3 +8,5 @@ Data chages with the Rainy and Sunny emojis
 
 Wireframe Design
 https://dimpho84876.invisionapp.com/freehand/Cape-Town-Weather-Application-rjEpgv0JO
+
+![image](https://github.com/Dimpho-Mokoena/Weather-Application-/assets/130166726/307d849f-aaeb-4d70-922e-92496602e177)
