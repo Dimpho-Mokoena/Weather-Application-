@@ -1,31 +1,69 @@
- <script>
-    function showTemperature(response) {
-        console.log(response.data);
-        let temperature = Math.round(response.data.main.temp);
-        let temperatureElement = document.querySelector("#temperature");
-        let description = document.querySelector("#temperature-description");
-        temperatureElement.innerHTML = `${temperature}°C`;
-        description.innerHTML = response.data.weather[0].description;
-    }
+function getWeatherData(city) {
+  let apiKey = "d669931a5f6cd86bcccf4c1c626f6bc7";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
 
-        let apiKey = "866a208a73eeff02182218e9441647a1";
-        let city = "Cape Town";
-        let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric`;
+  axios.get(apiUrl).then(displayWeatherCondition);
+}
 
-    let h1 = document.querySelector("#city");
-    h1.innerHTML = city;
+function showTemperature(response) {
+  let temperature = Math.round(response.data.main.temp);
+  let temperatureElement = document.querySelector("#temp-value");
+  temperatureElement.innerHTML = temperature;
+}
 
-    axios.get(`${apiUrl}&appid=${apiKey}`).then(showTemperature);
+function convertTemperature() {
+  let temperatureElement = document.querySelector("#temp-value");
+  let convertLink = document.querySelector("#convert-link");
 
-    function showPosition(position) {
-        console.log("position");
-        let h1 = document.querySelector("h1");
-        h1.innerHTML = `Your latitude is ${position.coords.latitude} and your longitude is ${position.coords.longitude}`;
-    }
-    function getCurrentPosition() {
-        navigator.geolocation.getCurrentPosition(showPosition);
-    }
+  let currentTemp = parseFloat(temperatureElement.innerHTML);
 
-    let button = document.querySelector("button");
-    button.addEventListener("click", getCurrentPosition);
-       </script>
+  if (convertLink.innerHTML === "°F") {
+    let convertedTemp = (currentTemp * 9) / 5 + 32;
+    temperatureElement.innerHTML = Math.round(convertedTemp);
+    convertLink.innerHTML = "°C";
+  } else {
+    let convertedTemp = ((currentTemp - 32) * 5) / 9;
+    temperatureElement.innerHTML = Math.round(convertedTemp);
+    convertLink.innerHTML = "°F";
+  }
+}
+
+function searchCity(event) {
+  event.preventDefault();
+  let searchInput = document.querySelector("#search-input");
+  let city = searchInput.value.trim();
+  let cityNameElement = document.querySelector("#city-name");
+  cityNameElement.textContent = city;
+  showTemperature({ data: { main: { temp: 17 } } });
+  getWeatherData(city);
+  searchInput.value = "";
+}
+
+let searchForm = document.querySelector("#search-form");
+searchForm.addEventListener("submit", searchCity);
+
+let convertLink = document.querySelector("#convert-link");
+convertLink.addEventListener("click", convertTemperature);
+
+ function updateTime() {
+            let now = new Date();
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            let seconds = now.getSeconds();
+            let amPm = hours >= 12 ? 'PM' : 'AM';
+
+            hours = hours % 12 || 12;
+            hours = hours < 10 ? '0' + hours : hours;
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+document.getElementById('time').textContent = hours + ':' + minutes + ':' + seconds;
+ document.getElementById('am-pm').textContent = amPm;
+
+       
+            let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            let formattedDate = now.toLocaleDateString(undefined, options);
+            document.getElementById('date').textContent = formattedDate;
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+
