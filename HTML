@@ -1,25 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
     <title>Weather App</title>
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
 </head>
 
 <body>
     <div class="navbar-city">
         <div class="container-fluid">
             <form class="d-flex" id="search-form">
-                <input class="form-search" type="search" id="search-input" placeholder="Search" aria-label="Search">
+                <input class="form-search" type="search" id="search-input" placeholder="" aria-label="Search">
                 <button class="search" type="submit">Search</button>
             </form>
         </div>
     </div>
-
+<button id="current-location-button">Current Location</button>
     <div class="container">
         <div class="weather-app">
             <div class="current-weather">
@@ -36,15 +36,76 @@
                     <br>
                     <span id="date"></span>
                 </div>
-                <div class="place-container">
-                    <span class="time-zone">Time Zone</span>
-                    <br>
-                    <span class="country">Country</span>
+
+        <div class="current-info">
+            <div class="date-container">
+                <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="weather-icon" class="w-icon">
+                <div class="time" id="time">
+                     <span id="am-pm"></span>
+                </div>
+                <div class="date" id="date"></div>
+            </div>
+
+            <div class="others" id="current-weather-items">
+                <div class="weather-item">
+                    <div>Humidity:</div>
+                    <div>95.2%</div>
+                </div>
+                <div class="weather-item">
+                    <div>Pressure:</div>
+                    <div>102</div>
+                </div>
+                <div class="weather-item">
+                    <div>Wind Speed:</div>
+                    <div>9</div>
                 </div>
             </div>
-    </div>
+        </div>
 
-    <script src="script.js"></script>
-</body>
+        <div class="future-forecast">
+            <div class="today" id="current-temp">
+                <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="weather-icon" class="w-icon">
+                <div class="other">
+                    <div class="day">Saturday</div>
+                    <div class="temp">high - 23.4&#176; C</div>
+                    <div class="temp">low - 11.2&#176; C</div>
+                </div>
+            </div>
 
-</html>
+            <div class="weather-forecast" id="weather-forecast">
+                <div class="weather-forecast-item">
+                    <div class="day">Sun</div>
+                    <img src="https://openweathermap.org/img/wn/10d.png" alt="weather-icon" class="w-icon">
+                    <div class="temp">high - 23.4&#176; C</div>
+                    <div class="temp">low - 11.2&#176; C</div>
+                </div>
+                <div class="weather-forecast-item">
+                    <div class="day">Mon</div>
+                    <img src="https://openweathermap.org/img/wn/10d.png" alt="weather-icon" class="w-icon">
+                    <div class="temp">high - 23.4&#176; C</div>
+                    <div class="temp">low - 11.2&#176; C</div>
+                </div>
+                <div class="weather-forecast-item">
+                    <div class="day">Tue</div>
+                    <img src="https://openweathermap.org/img/wn/10d.png" alt="weather-icon" class="w-icon">
+                    <div class="temp">high - 23.4&#176; C</div>
+                    <div class="temp">low - 11.2&#176; C</div>
+                </div>
+                <div class="weather-forecast-item">
+                    <div class="day">Wed</div>
+                    <img src="https://openweathermap.org/img/wn/10d.png" alt="weather-icon" class="w-icon">
+                    <div class="temp">high - 23.4&#176; C</div>
+                    <div class="temp">low - 11.2&#176; C</div>
+                </div>
+                <div class="weather-forecast-item">
+                    <div class="day">Thu</div>
+                    <img src="https://openweathermap.org/img/wn/10d.png" alt="weather-icon" class="w-icon">
+                    <div class="temp">high - 23.4&#176; C</div>
+                    <div class="temp">low - 11.2&#176; C</div>
+                </div>
+            </div>
+        </div>
+        <div class="git"> <a href="https://github.com/Dimpho-Mokoena"><open-source-code>open-source-code</open-source-code></a>
+        <p>by Dimpho-Mokoena </p> </div>
+
+        <script src="script.js"></script>
