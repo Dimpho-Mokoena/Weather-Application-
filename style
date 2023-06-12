@@ -30,8 +30,8 @@ body {
 }
 
 .date-container {
-  font-size: 50px;
-  font-weight: 100;
+  font-size: 40px;
+  font-weight: 50;
 }
 
 .date-container #am-pm {
@@ -43,11 +43,6 @@ body {
   font-size: 30px;
 }
 
-.place-container .time-zone {
-  font-size: 20px;
-  font-weight: 400;
-}
-
 .current-info .others {
   display: flex;
   flex-direction: column;
@@ -57,25 +52,25 @@ body {
   margin: 5px 0;
   border: 1px solid rgb(236, 182, 47);
   position: relative;
-  top: 50px;
+  top: 5px;
 }
 
 .current-info .others .weather-item {
   display: flex;
   justify-content: space-between 3px;
   position: relative;
-  top: 15px;
+  top: 60px;
   padding: 3px;
 }
 
 .future-forecast {
-  padding: 10px;
+  padding: 2px;
   display: flex;
   color: white;
   width: 90%;
   align-items: center;
   justify-content: center;
-  
+
 }
 
 .future-forecast .today {
@@ -84,22 +79,22 @@ body {
   justify-content: center;
   left: 10px;
   position: absolute;
-  bottom: 220px;
+  bottom: 10px;
   padding: 20px;
 }
 
 .future-forecast .day {
-   position: absolute;
-  bottom:120px;
+  position: absolute;
+  bottom: 50px;
   border-radius: 10px;
   padding: 5px;
-  left: 20px;
+  left: 40px;
 
 }
 
 .weather-forecast {
-  position:relative;
-  top: 150px;
+  position: relative;
+  top: 90px;
   border-radius: 10px;
   padding: 5px;
   left: 50px;
@@ -108,7 +103,7 @@ body {
 .future-forecast .today.temp {
   font-size: 15px;
   padding-top: 50px;
-  
+
 }
 
 .future-forecast .weather-forecast {
@@ -122,19 +117,19 @@ body {
   margin: 3px;
   border: 1px solid rgb(240, 183, 62);
   border-radius: 15px;
-  padding: 20px;
+  padding: 50px;
   font-size: 20px;
   font-weight: 100;
   background: rgba(24, 24, 27, 0.6);
 }
 
 .weather-forecast .weather-forecast-item .day {
-  padding: 5px 15px;
+  padding: 10px 10px;
   background: #f07e37;
   border-radius: 50px;
   text-align: center;
   position: relative;
-  left: 20px;
+  left: 25px;
   bottom: 70px;
 }
 
@@ -144,7 +139,7 @@ body {
 
 .search {
   position: absolute;
-top: 20px;
+  top: 20px;
   right: 20px;
   padding: 10px 15px;
   width: 99px;
@@ -160,7 +155,7 @@ top: 20px;
   line-height: 22px;
   text-decoration: none;
   cursor: pointer;
-  
+
 }
 
 .form-search {
@@ -182,15 +177,32 @@ top: 20px;
   text-decoration: none;
   cursor: pointer;
 }
-.current-info .date-container .w-icon{
+
+.current-info .date-container .w-icon {
   position: absolute;
   top: 10px;
   left: 80px;
 }
-.git{
+
+.git {
   position: absolute;
   bottom: 100px;
-  font-family:'Times New Roman', Times, serif;
-  left:700px
+  font-family: 'Times New Roman', Times, serif;
+  left: 700px
+}
+.date-container {
+  font-size: 40px;
+  font-weight: 50;
+  display: flex;
+  align-items: center;
 }
 
+.date-container #am-pm {
+  font-size: 30px;
+  margin-left: 20px;
+}
+
+.date-container .date {
+  font-size: 30px;
+  margin-left: 10px;
+}
