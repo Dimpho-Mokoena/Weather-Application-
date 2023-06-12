@@ -206,3 +206,27 @@ body {
   font-size: 30px;
   margin-left: 10px;
 }
+
+.container {
+    width: 100%;
+}
+
+@media (min-width: 576px) {
+    .container {
+        width: 90%;
+        max-width: 500px;
+    }
+}
+@media (min-width: 768px) {
+    .container {
+        width: 80%;
+        max-width: 700px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        width: 70%;
+        max-width: 1000px;
+    }
+}
