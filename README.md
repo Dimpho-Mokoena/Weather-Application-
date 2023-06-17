@@ -1,10 +1,22 @@
 # Weather-Application-
-This is a weather application written in HTML and css
-I have used other systems such as Bootstraps
-Javascript were incorporated on the app
-The application use real live data
+This is a Live, responsive weather application written in the following; HTML 
+-CSS
+-Bootstrap
+-advanced JavaScript techniques (ES6)
+-API
+-Git
+-GitHub 
+-Hosting
 
+Styling and visuals
+-Unsplash
+-unDraw
+-ManyPixels
+-Pexels
+-Unsplash
+-InVision
 
+#javascript #html #css #github #webdevelopment
 ****
 
 Wireframe Design
