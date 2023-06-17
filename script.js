@@ -1,37 +1,39 @@
+document.getElementById("search-form").addEventListener("submit", function (event) {
+  event.preventDefault();
+  let searchInput = document.getElementById("search-input");
+  let city = searchInput.value;
+  getWeatherDataByCity(city);
+  searchInput.value = "";
+});
+
 function getWeatherDataByCity(city) {
   let apiKey = "d669931a5f6cd86bcccf4c1c626f6bc7";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
+  let currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
+  let forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`;
 
-  axios.get(apiUrl).then(displayWeatherCondition);
+  axios.all([axios.get(currentWeatherUrl), axios.get(forecastUrl)])
+    .then(axios.spread(function (currentWeatherResponse, forecastResponse) {
+      displayWeatherCondition(currentWeatherResponse.data);
+      displayForecast(forecastResponse.data);
+    }))
+    .catch(function (error) {
+      console.log(error);
+    });
 }
 
-function getWeatherDataByCoordinates(latitude, longitude) {
-  let apiKey = "d669931a5f6cd86bcccf4c1c626f6bc7";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${apiKey}`;
-
-  axios.get(apiUrl).then(displayWeatherCondition);
-}
-
-function getForecastDataByCity(city) {
-  let apiKey = "d669931a5f6cd86bcccf4c1c626f6bc7";
-  let forecastApiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`;
-
-  axios.get(forecastApiUrl).then(displayWeatherForecast);
-}
-
-function displayWeatherCondition(response) {
-  let temperatureCelsius = Math.round(response.data.main.temp);
+function displayWeatherCondition(data) {
+  let temperatureCelsius = Math.round(data.main.temp);
   let temperatureFahrenheit = Math.round((temperatureCelsius * 9) / 5 + 32);
-  let humidity = response.data.main.humidity;
-  let pressure = response.data.main.pressure;
-  let windSpeed = response.data.wind.speed;
-  let city = response.data.name;
-  let weatherDescription = response.data.weather[0].description;
-  let weatherIcon = response.data.weather[0].icon;
+  let humidity = data.main.humidity;
+  let precipitation = data.rain ? data.rain["1h"] : "N/A"; // Assuming precipitation is in "rain" property
+  let windSpeed = data.wind.speed;
+  let city = data.name;
+  let weatherDescription = data.weather[0].description;
+  let weatherIcon = data.weather[0].icon;
 
   document.getElementById("temp-value").textContent = temperatureCelsius;
   document.getElementById("humidity-value").textContent = humidity + "%";
-  document.getElementById("pressure-value").textContent = pressure + " hPa";
+  document.getElementById("precipitation-value").textContent = precipitation + " mm";
   document.getElementById("wind-speed-value").textContent = windSpeed + " m/s";
   document.getElementById("city-name").textContent = city;
   document.getElementById("weather-description").textContent = weatherDescription;
@@ -56,101 +58,67 @@ function displayWeatherCondition(response) {
   });
 }
 
-function displayWeatherForecast(response) {
-  let forecastData = response.data.list;
+function displayForecast(data) {
   let forecastContainer = document.getElementById("weather-forecast");
   forecastContainer.innerHTML = "";
 
-  let futureDates = [];
+  let forecastData = data.list;
+  let forecastDays = {};
 
-  for (let i = 0; i < 5; i++) {
-    let forecastItem = forecastData[i];
-    let forecastDate = new Date(forecastItem.dt * 1000); 
-    futureDates.push(forecastDate);
-    let dayOfWeek = forecastDate.toLocaleDateString(undefined, { weekday: "short" });
-    let iconCode = forecastItem.weather[0].icon;
-    let maxTemp = Math.round(forecastItem.main.temp_max);
-    let minTemp = Math.round(forecastItem.main.temp_min);
+  for (let i = 0; i < forecastData.length; i++) {
+    let forecast = forecastData[i];
+    let forecastDate = new Date(forecast.dt * 1000);
+    let forecastDay = forecastDate.getDate();
+    let forecastTemperature = Math.round(forecast.main.temp);
+    let forecastDescription = forecast.weather[0].description;
+    let forecastIcon = forecast.weather[0].icon;
 
-    let forecastHTML = `
-      <div class="weather-forecast-item">
-        <div class="day">${dayOfWeek}</div>
-        <img src="https://openweathermap.org/img/wn/${iconCode}.png" alt="weather-icon" class="w-icon">
-        <div class="temp">High - ${maxTemp}&#176; C</div>
-        <div class="temp">Low - ${minTemp}&#176; C</div>
-      </div>
-    `;
-
-    forecastContainer.innerHTML += forecastHTML;
+    if (!forecastDays[forecastDay]) {
+      forecastDays[forecastDay] = {
+        date: forecastDate,
+        temperature: forecastTemperature,
+        description: forecastDescription,
+        icon: forecastIcon,
+      };
+    }
   }
 
-  let forecastItems = forecastContainer.getElementsByClassName("weather-forecast-item");
-  for (let i = 0; i < forecastItems.length; i++) {
-    let forecastItem = forecastItems[i];
-    let dateElement = document.createElement("div");
-    dateElement.className = "date";
-    dateElement.textContent = futureDates[i].toLocaleDateString(undefined, {
-      month: "short",
-      day: "numeric"
-    });
-    forecastItem.insertBefore(dateElement, forecastItem.firstChild);
+  let days = Object.values(forecastDays);
+  for (let i = 0; i < days.length; i++) {
+    let forecast = days[i];
+
+    let forecastItem = document.createElement("div");
+    forecastItem.classList.add("forecast-item");
+
+    let forecastDateElement = document.createElement("div");
+    forecastDateElement.classList.add("forecast-date");
+    forecastDateElement.textContent = formatDate(forecast.date);
+    forecastItem.appendChild(forecastDateElement);
+
+    let forecastIconElement = document.createElement("img");
+    forecastIconElement.classList.add("forecast-icon");
+    forecastIconElement.setAttribute(
+      "src",
+      `https://openweathermap.org/img/wn/${forecast.icon}.png`
+    );
+    forecastIconElement.setAttribute("alt", forecast.description);
+    forecastItem.appendChild(forecastIconElement);
+
+    let forecastTemperatureElement = document.createElement("div");
+    forecastTemperatureElement.classList.add("forecast-temperature");
+    forecastTemperatureElement.textContent = forecast.temperature + "°C";
+    forecastItem.appendChild(forecastTemperatureElement);
+
+    let forecastDescriptionElement = document.createElement("div");
+    forecastDescriptionElement.classList.add("forecast-description");
+    forecastDescriptionElement.textContent = forecast.description;
+    forecastItem.appendChild(forecastDescriptionElement);
+
+    forecastContainer.appendChild(forecastItem);
   }
 }
 
-function searchCity(event) {
-  event.preventDefault();
-  let searchInput = document.querySelector("#search-input");
-  let city = searchInput.value.trim();
-  let cityNameElement = document.querySelector("#city-name");
-  cityNameElement.textContent = city;
-  getWeatherDataByCity(city);
-  getForecastDataByCity(city);
-  searchInput.value = "";
+function formatDate(date) {
+  let options = { weekday: "short", month: "short", day: "numeric" };
+  return date.toLocaleDateString("en-US", options);
 }
-
-function getCurrentLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(handleGeolocationSuccess, handleGeolocationError);
-  } else {
-    alert("Geolocation is not supported by your browser.");
-  }
-}
-
-function handleGeolocationSuccess(position) {
-  let latitude = position.coords.latitude;
-  let longitude = position.coords.longitude;
-  getWeatherDataByCoordinates(latitude, longitude);
-}
-
-function handleGeolocationError(error) {
-  console.error("Error getting current location:", error);
-}
-
-let searchForm = document.querySelector("#search-form");
-searchForm.addEventListener("submit", searchCity);
-
-let currentLocationBtn = document.querySelector("#current-location-button");
-currentLocationBtn.addEventListener("click", getCurrentLocation);
-function updateTime() {
-  let now = new Date();
-  let hours = now.getHours();
-  let minutes = now.getMinutes();
-  let seconds = now.getSeconds();
-  let amPm = hours >= 12 ? "PM" : "AM";
-
-  hours = hours % 12 || 12;
-  hours = hours < 10 ? "0" + hours : hours;
-  minutes = minutes < 10 ? "0" + minutes : minutes;
-  seconds = seconds < 10 ? "0" + seconds : seconds;
-
-  document.getElementById("time").textContent = hours + ":" + minutes + ":" + seconds;
-  document.getElementById("am-pm").textContent = amPm;
-
-  let options = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
-  let date = now.toLocaleDateString(undefined, options);
-  document.getElementById("date").textContent = date;
-}
-
-setInterval(updateTime, 1000);
-updateTime();
-
