@@ -56,21 +56,36 @@ function displayWeatherCondition(data) {
       convertLink.textContent = "°F";
     }
   });
-  let currentDate = new Date();
-  let currentTime = currentDate.toLocaleTimeString("en-US", {
-    hour: "numeric",
-    minute: "numeric",
-    hour12: true,
-  });
-  let currentDay = currentDate.toLocaleDateString("en-US", {
-    weekday: "short",
-    month: "short",
-    day: "numeric",
-  });
-
-  document.getElementById("time").textContent = currentTime;
-  document.getElementById("date").textContent = currentDay;
 }
+
+function displayDateTime() {
+  function formatTime(date) {
+    let options = {
+      hour: "numeric",
+      minute: "numeric",
+      second: "numeric",
+      hour12: true,
+    };
+    return date.toLocaleTimeString("en-US", options);
+  }
+
+  function formatDate(date) {
+    let options = { weekday: "short", month: "short", day: "numeric" };
+    return date.toLocaleDateString("en-US", options);
+  }
+
+  function updateDateTime() {
+    let currentDate = new Date();
+    let currentTime = formatTime(currentDate);
+    let currentDay = formatDate(currentDate);
+
+    document.getElementById("time").textContent = currentTime;
+    document.getElementById("date").textContent = currentDay;
+  }
+  setInterval(updateDateTime, 1000);
+}
+
+displayDateTime();
 
 function displayForecast(data) {
   let forecastContainer = document.getElementById("weather-forecast");
