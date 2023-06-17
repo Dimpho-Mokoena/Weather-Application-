@@ -30,8 +30,8 @@ body {
 }
 
 .date-container {
-  font-size: 30px;
-  font-weight: 40;
+  font-size: 10px;
+  font-weight: 10;
 }
 
 .date-container #am-pm {
