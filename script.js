@@ -25,7 +25,7 @@ function displayWeatherCondition(data) {
   let temperatureCelsius = Math.round(data.main.temp);
   let temperatureFahrenheit = Math.round((temperatureCelsius * 9) / 5 + 32);
   let humidity = data.main.humidity;
-  let precipitation = data.rain ? data.rain["1h"] : "N/A"; // Assuming precipitation is in "rain" property
+  let precipitation = data.rain ? data.rain["1h"] : "N/A"; 
   let windSpeed = data.wind.speed;
   let city = data.name;
   let weatherDescription = data.weather[0].description;
@@ -56,6 +56,20 @@ function displayWeatherCondition(data) {
       convertLink.textContent = "°F";
     }
   });
+  let currentDate = new Date();
+  let currentTime = currentDate.toLocaleTimeString("en-US", {
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true,
+  });
+  let currentDay = currentDate.toLocaleDateString("en-US", {
+    weekday: "short",
+    month: "short",
+    day: "numeric",
+  });
+
+  document.getElementById("time").textContent = currentTime;
+  document.getElementById("date").textContent = currentDay;
 }
 
 function displayForecast(data) {
