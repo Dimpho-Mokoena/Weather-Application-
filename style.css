@@ -18,8 +18,8 @@ body {
 
 .container {
   padding: 20px;
-  color: aliceblue;
-  max-width: 1200px;
+  color: rgb(255, 255, 255);
+  max-width: 900px;
   margin: 0 auto;
 }
 
@@ -30,17 +30,17 @@ body {
 }
 
 .date-container {
-  font-size: 40px;
-  font-weight: 50;
+  font-size: 30px;
+  font-weight: 40;
 }
 
 .date-container #am-pm {
-  font-size: 30px;
+  font-size: 20px;
   margin-left: 20px;
 }
 
 .date-container .date {
-  font-size: 30px;
+  font-size: 20px;
 }
 
 .current-info .others {
@@ -66,7 +66,7 @@ body {
 .future-forecast {
   padding: 2px;
   display: flex;
-  color: white;
+  color: rgb(19, 18, 18);
   width: 90%;
   align-items: center;
   justify-content: center;
@@ -210,23 +210,8 @@ body {
 .container {
     width: 100%;
 }
-
-@media (min-width: 576px) {
-    .container {
-        width: 90%;
-        max-width: 500px;
-    }
-}
-@media (min-width: 768px) {
-    .container {
-        width: 80%;
-        max-width: 700px;
-    }
-}
-
-@media (min-width: 992px) {
-    .container {
-        width: 70%;
-        max-width: 1000px;
-    }
+@media only screen and (max-width: 480px) {
+  .container {
+    padding: 10px;
+  }
 }
