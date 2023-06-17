@@ -7,7 +7,7 @@
 }
 
 body {
-  background: url('https://images.unsplash.com/photo-1686169505874-633b512546cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80');
+  background: url('https://images.unsplash.com/photo-1415560577920-b9911980d226?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1032&q=80');
   background-repeat: no-repeat;
   background-size: cover;
   height: 100vh;
@@ -18,8 +18,8 @@ body {
 
 .container {
   padding: 20px;
-  color: rgb(255, 255, 255);
-  max-width: 500px;
+  color: rgb(24, 23, 23);
+  max-width: 1000px;
   margin: 0 auto;
 }
 
@@ -43,17 +43,6 @@ body {
   font-size: 20px;
 }
 
-.current-info .others {
-  display: flex;
-  flex-direction: column;
-  background: whitesmoke;
-  padding: 40px;
-  border-radius: 10px;
-  margin: 5px 0;
-  border: 1px solid rgb(236, 182, 47);
-  position: relative;
-  top: 5px;
-}
 
 .current-info .others .weather-item {
   display: flex;
@@ -64,9 +53,9 @@ body {
 }
 
 .future-forecast {
-  padding: 10px;
+  padding: 5px;
   display: flex;
-  color: rgb(75, 130, 206);
+  color: rgb(12, 12, 12);
   width: 90%;
   align-items: center;
   justify-content: center;
@@ -85,7 +74,7 @@ body {
 
 .future-forecast .day {
   position: absolute;
-  bottom: 50px;
+  bottom: 20px;
   border-radius: 10px;
   padding: 5px;
   left: 40px;
@@ -110,27 +99,27 @@ body {
   display: flex;
 }
 
-.weather-forecast .weather-forecast-item {
+.future-forecast {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin: 3px;
+  align-items: center 10PX;
+  margin: 5px;
   border: 1px solid rgb(240, 183, 62);
-  border-radius: 15px;
-  padding: 50px;
+  border-radius: 5px ;
+  padding: 90px 15PX;
   font-size: 20px;
   font-weight: 100;
-  background: rgba(24, 24, 27, 0.6);
+  background: rgba(111, 106, 92, 0.6);
 }
 
 .weather-forecast .weather-forecast-item .day {
-  padding: 10px 10px;
+  padding: 10px;
   background: #f07e37;
   border-radius: 50px;
   text-align: center;
   position: relative;
-  left: 25px;
-  bottom: 70px;
+  left: 20px;
+  bottom: 5px;
 }
 
 .weather-forecast .weather-forecast-item .temp {
@@ -140,7 +129,7 @@ body {
 .search {
   position: absolute;
   top: 5px;
-  right: 40px;
+  right: 60px;
   padding: 10px 15px;
   width: 75px;
   display: block;
@@ -161,7 +150,7 @@ body {
 .form-search {
   position: absolute;
   top: 5px;
-  right: 141px;
+  right: 150px;
   padding: 10px 10px;
   width: 140px;
   display: block;
@@ -186,7 +175,7 @@ body {
 
 .git {
   position: absolute;
-  bottom: 100px;
+  bottom: 150px;
   font-family: 'Times New Roman', Times, serif;
   left: 700px
 }
