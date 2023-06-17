@@ -19,7 +19,7 @@ body {
 .container {
   padding: 20px;
   color: rgb(255, 255, 255);
-  max-width: 100px;
+  max-width: 500px;
   margin: 0 auto;
 }
 
@@ -46,7 +46,7 @@ body {
 .current-info .others {
   display: flex;
   flex-direction: column;
-  background: rgba(24, 24, 27, 0.6);
+  background: whitesmoke;
   padding: 40px;
   border-radius: 10px;
   margin: 5px 0;
@@ -64,9 +64,9 @@ body {
 }
 
 .future-forecast {
-  padding: 2px;
+  padding: 10px;
   display: flex;
-  color: rgb(19, 18, 18);
+  color: rgb(75, 130, 206);
   width: 90%;
   align-items: center;
   justify-content: center;
@@ -139,18 +139,18 @@ body {
 
 .search {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 5px;
+  right: 40px;
   padding: 10px 15px;
-  width: 99px;
+  width: 75px;
   display: block;
-  margin: 20px auto;
+  margin: 10px auto;
   border-radius: 20px;
   color: rgb(239, 178, 47);
   box-shadow: 0px 5px 10px 0px;
   transition: all 200ms ease-in-out;
   background: white;
-  border: rgb(170, 137, 206);
+  border: rgb(207, 51, 95);
   font-size: 16px;
   line-height: 22px;
   text-decoration: none;
@@ -160,12 +160,12 @@ body {
 
 .form-search {
   position: absolute;
-  top: 20px;
+  top: 5px;
   right: 141px;
-  padding: 10px 15px;
-  width: 160px;
+  padding: 10px 10px;
+  width: 140px;
   display: block;
-  margin: 20px auto;
+  margin: 10px auto;
   border-radius: 30px;
   color: rgb(239, 223, 47);
   box-shadow: 0px 5px 10px 0px;
