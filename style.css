@@ -175,7 +175,7 @@ body {
 
 .git {
   position: absolute;
-  bottom: 5px;
+  bottom: 10px;
   font-family: 'Times New Roman', Times, serif;
   left: 700px
 }
