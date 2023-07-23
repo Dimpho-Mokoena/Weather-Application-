@@ -53,10 +53,10 @@ body {
 }
 
 .future-forecast {
-  padding: 5px;
+  padding: 7px;
   display: flex;
   color: rgb(12, 12, 12);
-  width: 100%;
+  width: 90%;
   align-items: center;
   justify-content: center;
 
