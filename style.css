@@ -120,6 +120,7 @@ body {
   position: relative;
   left: 20px;
   bottom: 5px;
+  position:fixed;
 }
 
 .weather-forecast .weather-forecast-item .temp {
