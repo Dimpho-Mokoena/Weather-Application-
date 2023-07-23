@@ -86,7 +86,6 @@ body {
   border-radius: 10px;
   padding: 5px;
   left: 50px;
-  position: fixed;
 }
 
 .future-forecast .today.temp {
