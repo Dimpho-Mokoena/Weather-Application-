@@ -1,71 +1,92 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Weather App</title>
-    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weather Forecast</title>
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <div class="navbar-city">
-        <div class="container-fluid">
-            <form class="d-flex" id="search-form">
-                <input class="form-search" type="search" id="search-input" placeholder="" aria-label="Search">
-                <button class="search" type="submit">Search</button>
-            </form>
-        </div>
-    </div>
-    <div class="container">
-        <div class="weather-app">
-            <div class="current-weather">
-                <h2 id="city-name" class="city-name"></h2>
-                <div id="temperature" class="temperature">It is currently: <span id="temp-value">17</span>°C | <a
-                        href="#" id="convert-link">°F</a></div>
-                <div id="weather-description" class="weather-description"></div>
-                <img id="weather-icon" class="weather-icon" src="" alt="">
-            </div>
-            <div class="current-info">
-                <div class="date-container">
-                    <span id="time"></span>
-                    <span id="am-pm"></span>
-                    <br>
-                    <span id="date"></span>
-                </div>
-                <div class="current-weather-items">
-                    <div class="weather-item">
-                        <div>Humidity:</div>
-                        <div id="humidity-value">95.2%</div>
-                    </div>
-                    <div class="weather-item">
-                        <div>Precipitation:</div>
-                        <div id="precipitation-value">102 hPa</div>
-                    </div>
-                    <div class="weather-item">
-                        <div>Wind Speed:</div>
-                        <div id="wind-speed-value">9 m/s</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="future-forecast">
-            <h2>Future Forecast</h2>
-            <div class="weather-forecast" id="weather-forecast">
-            </div>
-        </div>
+<div class="app-root" id="app-root">
+  <div class="app-inner">
+
+    <div class="nav app-nav" id="app-nav">
+      <div class="nav-brand">Weather Forecast</div>
+      <form id="search-form">
+        <input class="input" id="search-input" type="text" placeholder="Search any city…" autocomplete="off">
+        <button type="submit" class="btn btn-secondary btn-icon" aria-label="Search">
+          <svg width="16" height="16" viewBox="0 0 256 256" fill="currentColor"><path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path></svg>
+        </button>
+      </form>
     </div>
 
-    <div class="container">
-        <div class="git">
-            <a href="https://github.com/Dimpho-Mokoena"><open-source-code>open-source-code</open-source-code></a>
-            <p>by Dimpho-Mokoena</p>
+    <div class="city-chips" id="city-chips"></div>
+
+    <div class="toast" id="toast" hidden></div>
+
+    <div class="weather-hero hero-grid" id="hero" data-daypart="day" hidden>
+      <div>
+        <div class="hero-title-row">
+          <h1 id="city-name"></h1>
+          <span class="tag tag-neutral" id="city-country"></span>
+          <span class="tag tag-accent updating-tag" id="updating-tag" hidden>Updating…</span>
         </div>
+        <div class="hero-main">
+          <div class="hero-icon" id="hero-icon"></div>
+          <div>
+            <div class="temp-row">
+              <span class="hero-temp" id="temp-value"></span>
+              <div class="unit-toggle" id="unit-toggle">
+                <button type="button" class="btn btn-icon" id="unit-c" data-unit="C">C</button>
+                <button type="button" class="btn btn-icon" id="unit-f" data-unit="F">F</button>
+              </div>
+            </div>
+            <div class="condition-line"><span id="condition-label"></span> · Feels like <span id="feels-like"></span>°</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-time" id="hero-time">
+        <div class="time-str" id="time-str"></div>
+        <div class="date-str" id="date-str"></div>
+        <div class="meta-list">
+          <div class="meta-row"><span>Humidity</span><span id="humidity-value"></span></div>
+          <div class="meta-row"><span>Pressure</span><span id="pressure-value"></span></div>
+          <div class="meta-row"><span>Wind</span><span id="wind-value"></span></div>
+          <div class="meta-row"><span>Sunrise</span><span id="sunrise-value"></span></div>
+          <div class="meta-row"><span>Sunset</span><span id="sunset-value"></span></div>
+        </div>
+      </div>
     </div>
 
-    <script src="script.js"></script>
+    <div class="loading" id="loading">Loading weather…</div>
+
+    <div class="forecast-section" id="forecast-section" hidden>
+      <h2>5-Day Forecast</h2>
+      <div class="forecast-grid" id="forecast-grid"></div>
+    </div>
+
+  </div>
+</div>
+
+<div class="dialog-backdrop" id="dialog-backdrop" hidden>
+  <div class="dialog elev-lg" id="dialog">
+    <div class="dialog-title" id="dialog-title"></div>
+    <div class="dialog-body">
+      <div class="dialog-main">
+        <div class="dialog-icon" id="dialog-icon"></div>
+        <div>
+          <div class="dialog-temp" id="dialog-temp"></div>
+          <div class="dialog-label" id="dialog-label"></div>
+        </div>
+      </div>
+    </div>
+    <div class="dialog-actions">
+      <button type="button" class="btn btn-secondary" id="dialog-close">Close</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
 </body>
-
 </html>
